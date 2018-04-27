@@ -3,7 +3,7 @@
  *               the tables of the Cyber Skyline Score Reports.
  * @author Rob Dukarski <rob@purplest.com>
  * @copyright 2018 Rob Dukarski
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 /**
@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	let data = window.preload;
 	let challengeCount = data.challenges.length;
 	let clusterCount = data.clusters.length;
+	let clusterIterator = 0;
 	let clusters = {};
 	let modules = {};
 	let moduleCount = data.modules.length;
@@ -150,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		console.log('Adding module: ' + tempModule.id);
 
-		scoreSummaryTableBody.insertAdjacentHTML('beforeend', '<tr data-module-id="' + tempModule.id + '"><td>' + tempModule.name + '</td><td>' + tempModule.correct + '</td><td>' + tempModule.attempts + '</td><td>' + tempModule.skipped + '</td><td>' + tempModule.hints + '</td><td>' + tempModule.accuracy + '</td><td>' + tempModule.potentialAccuracy + '</td><td>' + tempModule.completion + '</td><td>' + tempModule.points + ' / ' + tempModule.totalPoints + '</td></tr>');
+		scoreSummaryTableBody.insertAdjacentHTML('beforeend', '<tr index="' + i + '" data-value="' + tempModule.id + '" data-module-id="' + tempModule.id + '"><td>' + tempModule.name + '</td><td>' + tempModule.correct + '</td><td>' + tempModule.attempts + '</td><td>' + tempModule.skipped + '</td><td>' + tempModule.hints + '</td><td>' + tempModule.accuracy + '</td><td>' + tempModule.potentialAccuracy + '</td><td>' + tempModule.completion + '</td><td>' + tempModule.points + ' / ' + tempModule.totalPoints + '</td></tr>');
 
 		for (let j = 0; j < tempModule.clustersArray.length; j++) {
 			let tempClusterId = tempModule.clustersArray[j];
@@ -164,7 +165,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			console.log('Adding cluster: ' + tempCluster.id);
 
-			scoreBreakdownTableBody.insertAdjacentHTML('beforeend', '<tr data-module-id="' + tempCluster.id + '"><td>' + tempModule.name + '</td><td>' + tempCluster.name + '</td><td>' + tempCluster.correct + '</td><td>' + tempCluster.attempts + '</td><td>' + tempCluster.skipped + '</td><td>' + tempCluster.hints + '</td><td>' + tempCluster.accuracy + '</td><td>' + tempCluster.potentialAccuracy + '</td><td>' + tempCluster.completion + '</td><td>' + tempCluster.points + ' / ' + tempCluster.totalPoints + '</td></tr>');
+			scoreBreakdownTableBody.insertAdjacentHTML('beforeend', '<tr index="' + clusterIterator + '" data-value="' + tempCluster.id + '" data-module-id="' + tempCluster.id + '"><td>' + tempModule.name + '</td><td>' + tempCluster.name + '</td><td>' + tempCluster.correct + '</td><td>' + tempCluster.attempts + '</td><td>' + tempCluster.skipped + '</td><td>' + tempCluster.hints + '</td><td>' + tempCluster.accuracy + '</td><td>' + tempCluster.potentialAccuracy + '</td><td>' + tempCluster.completion + '</td><td>' + tempCluster.points + ' / ' + tempCluster.totalPoints + '</td></tr>');
+
+			clusterIterator++;
 
 			for (let k = 0; k < challengeCount; k++) {
 				if (data.challenges[k].cluster === tempCluster.id) {
