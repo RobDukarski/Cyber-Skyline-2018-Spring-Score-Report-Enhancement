@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+  "name": "Cyber Skyline - Score Report Enhancement",
+  "version": "1.0.0",
+  "author": "Rob Dukarski",
+	"content_scripts": [
+    {
+      "matches": [
+				"https://ncl.cyberskyline.com/world/*/report/*"
+			],
+      "js": [
+				"enhancements.js"
+			]
+    }
+  ],
+  "description": "This extension was created to add a Potential Accuracy column to the Cyber Skyline Score Report.",
+  "homepage_url": "https://github.com/RobDukarski/Cyber-Skyline-2018-Spring-Score-Report-Enhancement",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+	},
+	"incognito": "split",
+  "permissions": [
+    "https://ncl.cyberskyline.com/*",
+		"tabs"
+  ]
+}
